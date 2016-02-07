@@ -1,0 +1,99 @@
+					createBasePlateFunction : function (r) {
+						try {
+							var regionObject = r.prototype;
+							for (var key in regionObject) {
+								if (typeof regionObject[key] === 
+
+'function') {
+									var strFunction = 
+
+regionObject[key].toString();
+									if (strFunction.indexOf
+
+("Blue") > -1 && strFunction.indexOf("Black") > -1 ) {
+										if (r == 
+
+ClientLib.Vis.Region.RegionNPCCamp || r == ClientLib.Vis.Region.RegionNPCBase) {
+											
+
+regionObject[key]=function () {
+												var 
+
+$createHelper;
+												var 
+
+basePlateColor = ClientLib.Vis.EBackgroundPlateColor.Black;
+												if 
+
+((ClientLib.Data.MainData.GetInstance().get_Cities().get_CurrentOwnCity() != null) && 
+
+ClientLib.Data.MainData.GetInstance().get_Cities().get_CurrentOwnCity().HasAttackFormation
+
+(this.get_Id())) {
+													
+
+var playerFaction = ClientLib.Data.MainData.GetInstance().get_Player().get_Faction();
+													
+
+basePlateColor = ((this.get_PlayerFaction() == 1) ? ClientLib.Vis.EBackgroundPlateColor.Orange : 
+
+ClientLib.Vis.EBackgroundPlateColor.Cyan);
+												}
+												
+
+return basePlateColor;
+											}
+											break;
+										} else {
+											
+
+regionObject[key]=function () {
+												var 
+
+$createHelper;
+												var 
+
+basePlateColor = ClientLib.Vis.EBackgroundPlateColor.Black;
+												if 
+
+(this.get_Type() == ClientLib.Vis.Region.RegionCity.ERegionCityType.Own) {
+													
+
+basePlateColor = ((this.get_PlayerFaction() == 1) ? ClientLib.Vis.EBackgroundPlateColor.Cyan : 
+
+ClientLib.Vis.EBackgroundPlateColor.Orange);
+												} 
+
+else {
+													
+
+basePlateColor = ClientLib.Vis.EBackgroundPlateColor.Black;
+												}
+												if 
+
+(((this.get_Type() != ClientLib.Vis.Region.RegionCity.ERegionCityType.Own) && 
+
+(ClientLib.Data.MainData.GetInstance().get_Cities().get_CurrentOwnCity() != null)) && 
+
+ClientLib.Data.MainData.GetInstance().get_Cities().get_CurrentOwnCity().HasAttackFormation
+
+(this.get_Id())) {
+													
+
+basePlateColor = ((this.get_PlayerFaction() == 1) ? ClientLib.Vis.EBackgroundPlateColor.Orange : 
+
+ClientLib.Vis.EBackgroundPlateColor.Cyan);
+												}
+												
+
+return basePlateColor;
+											}
+											break;
+										}
+									}
+								}
+							}
+						} catch (e) {
+							console.log(e);
+						}
+					},
