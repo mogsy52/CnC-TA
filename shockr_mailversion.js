@@ -446,7 +446,7 @@
                             }
                         }
                     }
-                    if (tib4 > 1 || tib5 > 0 || tib6 > 0 || tib7 > 0 || pow8 > 2 || mix4 > 5 || mix5 > 1 || mix6 > 0 || mix7 > 0 || mix8 > 0) {
+                    if (tib4 > 1 || tib5 > 0 || tib6 > 0 || tib7 > 0 ) {
                         var out;
                         out = '[coords]' + tmp.x + ':' + tmp.y + '[/coords]';
                         out = out + ' tib(4-7): ' + BaseScanner.formatRes(tib4) + '|' + BaseScanner.formatRes(tib5) + '|' + BaseScanner.formatRes(tib6) + '|' + BaseScanner.formatRes(tib7);
